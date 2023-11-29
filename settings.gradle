@@ -16,3 +16,5 @@ rootProject.name = "Learning"
 include ':app'
 include ':calculator'
 include ':opengltest'
+include ':app:alarmmanagertest'
+include ':Carousel'

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--    <com.example.carousel.BaseSurfaceView-->
+    <!--        android:id="@+id/gradientSurfaceView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent" />-->
+
+<!--        <com.example.carousel.MovingLineView-->
+<!--            android:id="@+id/gradientSurfaceView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+
+<!--        <com.example.carousel.BorderView-->
+<!--            android:id="@+id/gradientSurfaceView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+
+<!--    <com.example.carousel.BulletsView-->
+<!--        android:id="@+id/gradientSurfaceView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+<!--    <com.example.carousel.DancingLinesView-->
+<!--        android:id="@+id/gradientSurfaceView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+<!--    <com.example.carousel.CustomDiscontinuousRectView-->
+<!--        android:id="@+id/gradientSurfaceView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+<!--        <com.example.carousel.CustomVerticalLineView-->
+<!--            android:id="@+id/gradientSurfaceView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+
+<!--    <com.example.carousel.EdgeLinesView-->
+<!--        android:id="@+id/gradientSurfaceView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+<!--    <com.example.carousel.MarqueeLineView-->
+<!--        android:id="@+id/gradientSurfaceView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+<!--        <com.example.carousel.RoundedRectView-->
+<!--            android:id="@+id/gradientSurfaceView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+
+    <com.example.carousel.RoundRectPathAnimationView
+        android:id="@+id/gradientSurfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+<!--    <com.example.carousel.XfermodeExampleView-->
+<!--        android:id="@+id/gradientSurfaceView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,11 +15,6 @@ var triangleCoords = floatArrayOf(     // in counterclockwise order:
 
 class Triangle {
     private var mProgram: Int
-//    private val vertexShaderCode =
-//        "attribute vec4 vPosition;" +
-//                "void main() {" +
-//                "  gl_Position = vPosition;" +
-//                "}"
 
     private val fragmentShaderCode =
         "precision mediump float;" +
