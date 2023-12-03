@@ -48,16 +48,16 @@ class Triangle {
 
             // create a floating point buffer from the ByteBuffer
             asFloatBuffer().apply {
-                    // add the coordinates to the FloatBuffer
-                    put(triangleCoords)
-                    // set the buffer to read the first coordinate
-                    position(0)
+                // add the coordinates to the FloatBuffer
+                put(triangleCoords)
+                // set the buffer to read the first coordinate
+                position(0)
             }
         }
 
     init {
-        val vertexShader: Int = MyGLRenderer().loadShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode)
-        val fragmentShader: Int = MyGLRenderer().loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode)
+        val vertexShader: Int = loadShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode)
+        val fragmentShader: Int = loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode)
 
         // create empty OpenGL ES Program
         mProgram = GLES20.glCreateProgram().also {
@@ -121,8 +121,28 @@ class Triangle {
 
         // Draw the triangle
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount)
+        checkGLError("draw")
 
         // Disable vertex array
         GLES20.glDisableVertexAttribArray(positionHandle)
+    }
+
+    private fun checkGLError(glOperation: String) {
+        val error = GLES20.glGetError()
+        if (error != GLES20.GL_NO_ERROR) {
+            println("$glOperation - GL错误: $error")
+        }
+    }
+
+    fun loadShader(type: Int, shaderCode: String): Int {
+
+        // create a vertex shader type (GLES20.GL_VERTEX_SHADER)
+        // or a fragment shader type (GLES20.GL_FRAGMENT_SHADER)
+        return GLES20.glCreateShader(type).also { shader ->
+
+            // add the source code to the shader and compile it
+            GLES20.glShaderSource(shader, shaderCode)
+            GLES20.glCompileShader(shader)
+        }
     }
 }

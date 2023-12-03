@@ -28,8 +28,8 @@ class BitmapTest {
         1f, 0f     // top right
     )
 
-    private val vboIds = IntArray(1)
-    private val eboIds = IntArray(1)
+//    private val vboIds = IntArray(1)
+//    private val eboIds = IntArray(1)
 
     // 四个顶点的缓冲数组
     private val vertexBuffer: FloatBuffer =
@@ -145,7 +145,8 @@ class BitmapTest {
         // 获取顶点着色器中的vPosition变量(因为之前已经编译过着色器代码,所以可以从着色器程序中获取);用唯一ID表示
         val position = GLES20.glGetAttribLocation(mProgram, "vPosition")
         val alphaUniformLocation = GLES20.glGetUniformLocation(mProgram, "alpha")
-        alpha = setAlphaByTime(0.3f, 0.7f)
+//        alpha = setAlphaByTime(0.3f, 0.7f)
+        alpha = changeAlphaByTime(0.3f, 0.7f)
         GLES20.glUniform1f(alphaUniformLocation, alpha)
         // 允许操作顶点对象position
         GLES20.glEnableVertexAttribArray(position)
@@ -199,6 +200,13 @@ class BitmapTest {
         val elapsedTimeMillis = (currentTime - startTimeMillis) % periodMillis
         val alpha = sin(2 * Math.PI * elapsedTimeMillis / periodMillis).toFloat() * 0.5f + 0.5f
         return start + alpha * (end - start)
+    }
+
+    private fun changeAlphaByTime(start: Float, end: Float): Float {
+        var startTime: Long = System.currentTimeMillis() % 2000
+        var percentage: Double = startTime.toDouble() / 2000.0
+        var currentAngle: Float = (percentage * 2 * Math.PI).toFloat()
+        return (sin(currentAngle) * ((end - start) / 2)) + (end + start) / 2
     }
 
 }

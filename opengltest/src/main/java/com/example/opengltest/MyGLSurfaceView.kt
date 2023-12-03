@@ -18,6 +18,6 @@ class MyGLSurfaceView (context: Context) : GLSurfaceView(context){
         val bitmap2 = BitmapFactory.decodeResource(context.resources,R.drawable.img)
         renderer.setImageBitmap(bitmap)
         renderer1.setImageBitmap(bitmap2)
-        setRenderer(renderer1)
+        setRenderer(renderer)
     }
 }

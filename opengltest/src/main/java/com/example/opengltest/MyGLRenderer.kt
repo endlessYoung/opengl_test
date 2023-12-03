@@ -12,6 +12,7 @@ import javax.microedition.khronos.opengles.GL10
 
 class MyGLRenderer : GLSurfaceView.Renderer {
     private lateinit var mTriangle: Triangle
+    private lateinit var mStar: Star
     private val rotationMatrix = FloatArray(16)
 
     // vPMatrix is an abbreviation for "Model View Projection Matrix"
@@ -30,6 +31,7 @@ class MyGLRenderer : GLSurfaceView.Renderer {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f)
 
         mTriangle = Triangle()
+        mStar = Star()
 
         bitmapSquare = BitmapTest()
         // 创建纹理
@@ -42,13 +44,13 @@ class MyGLRenderer : GLSurfaceView.Renderer {
         glClear(GL_COLOR_BUFFER_BIT)
         glEnable(GL_BLEND)
         glBlendFunc(GL_SRC_ALPHA, GL_SRC_ALPHA_SATURATE)
-//        glDisable(GL_DEPTH_TEST)  // 此处需要禁止深度测试
+        glDisable(GL_DEPTH_TEST)  // 此处需要禁止深度测试
 
 //        创建4*4矩阵数组
         val scratch = FloatArray(16)
         // Set the camera position (View matrix)
 //      相机位于坐标原点，Z轴负方向移动了-3个单位，视角看向Z轴的正方向
-        Matrix.setLookAtM(viewMatrix, 0, 0f, 0f, -3f, 0f, 0f, 0f, 0f, 1.0f, 0.0f)
+        Matrix.setLookAtM(viewMatrix, 0, 0f, 0f, -4f, 0f, 0f, 0f, 0f, 1.0f, 0.0f)
 
         // Calculate the projection and view transformation
         Matrix.multiplyMM(vPMatrix, 0, projectionMatrix, 0, viewMatrix, 0)
@@ -68,7 +70,10 @@ class MyGLRenderer : GLSurfaceView.Renderer {
 //        mTriangle.draw(vPMatrix)
 //        mTriangle.draw(scratch)
 
-        bitmapSquare.draw(glTextureId)
+        // Draw star
+        mStar.draw(vPMatrix)
+
+//        bitmapSquare.draw(glTextureId)
 
     }
 
@@ -77,6 +82,14 @@ class MyGLRenderer : GLSurfaceView.Renderer {
 
         val ratio: Float = width.toFloat() / height.toFloat()
 
+        /*
+        * m: 存储结果的输出矩阵。
+        * offset: 存储结果矩阵的数组的偏移量。
+        * left, right: 近裁剪面的左右边界。
+        * bottom, top: 近裁剪面的上下边界。
+        * near, far: 近裁剪面和远裁剪面的距离。
+        *
+        * */
         // this projection matrix is applied to object coordinates
         // in the onDrawFrame() method
         Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1f, 1f, 3f, 7f)
